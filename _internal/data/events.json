@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "timezone": "local",
+  "updated_at": "2026-05-08",
+  "events": [
+    {
+      "enabled": true,
+      "guild_id": "10191134",
+      "name": "Bang Chiến/Guild War ⚔️",
+      "weekday": "saturday",
+      "time": "21:30",
+      "duration_minutes": 60,
+      "repeat": "weekly"
+    },
+    {
+      "enabled": true,
+      "guild_id": "10191134",
+      "name": "Bang Chiến/Guild War ⚔️",
+      "weekday": "sunday",
+      "time": "21:30",
+      "duration_minutes": 60,
+      "repeat": "weekly"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "update": {
+    "enabled": true,
+    "check_on_startup": true,
+    "auto_install": true,
+    "include_prerelease": false,
+    "repo": "KimiseVN/wwm-overlay",
+    "tag_prefix": "ping-overlay-v",
+    "asset_prefix": "PingOverlay-v",
+    "fallback_asset_prefixes": [
+      "WWMOverlay-v"
+    ],
+    "asset_extension": ".exe",
+    "metadata_timeout_seconds": 6,
+    "startup_probe_wait_seconds": 4.5
+  },
+  "github_token": "",
+  "license_admin": {
+    "enabled": true,
+    "endpoint_url": "https://laglyewqpxefwpfhryso.supabase.co/functions/v1/license-heartbeat",
+    "client_token": "r%T40&TZc&*FT!t@PKZW&8UICzbrp2ap",
+    "heartbeat_interval_minutes": 10,
+    "public_ip_lookup": true
+  },
+  "release_gateway": {
+    "enabled": true,
+    "endpoint_url": "https://script.google.com/macros/s/AKfycbwflr16JFByv9RIXcRvJ8o37pMu41kjq50eWOW0rEzt3wuIj_lj4WUWvqwdUtvSn8Uh/exec",
+    "client_token": "r%T40&TZc&*FT!t@PKZW&8UICzbrp2ap",
+    "repo": "KimiseVN/wwm-overlay",
+    "tag_prefix": "ping-overlay-v",
+    "include_prerelease": false
+  }
+}
