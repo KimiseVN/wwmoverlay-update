@@ -17,7 +17,7 @@
   "github_token": "",
   "license_admin": {
     "enabled": true,
-    "endpoint_url": "https://laglyewqpxefwpfhryso.supabase.co/functions/v1/license-heartbeat",
+    "endpoint_url": "https://kimisevn--wwm-api-fastapi-app.modal.run/api/heartbeat",
     "client_token": "r%T40&TZc&*FT!t@PKZW&8UICzbrp2ap",
     "heartbeat_interval_minutes": 10,
     "public_ip_lookup": true

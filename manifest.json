@@ -1,5 +1,5 @@
 {
-  "version": "1.0.88",
+  "version": "1.0.89",
   "build_type": "setup",
   "files": {
     "_internal/_asyncio.pyd": {
@@ -3847,7 +3847,7 @@
       "size": 726
     },
     "_internal/base_library.zip": {
-      "sha256": "18783a9a5accde2066a6100ef37d5879f06c259d931dd17919e3f99a3937ebe1",
+      "sha256": "e9a7bbf81052213850b4715613d3bcdf1b6b48e9007845e637bc251036452b72",
       "size": 1386064
     },
     "_internal/bcrypt/_bcrypt.pyd": {
@@ -4023,12 +4023,36 @@
       "size": 553
     },
     "_internal/data/internal_config.json": {
-      "sha256": "a56f4dd081290281ca59337ace71c46d02be8f14548881a66e15df9c55824d72",
-      "size": 1071
+      "sha256": "8d379eb218738565946436ac1493b3bf23a4c4ec33b6e2309f419e0970854015",
+      "size": 1061
     },
     "_internal/data/wwm_wandering_tales.json": {
       "sha256": "8ab1ec179789042730f61718229f8131082bc4c74f0192301f21fe0f1e9ba9ef",
       "size": 1662374
+    },
+    "_internal/h2-4.3.0.dist-info/INSTALLER": {
+      "sha256": "ceebae7b8927a3227e5303cf5e0f1f7b34bb542ad7250ac03fbcde36ec2f1508",
+      "size": 4
+    },
+    "_internal/h2-4.3.0.dist-info/licenses/LICENSE": {
+      "sha256": "7a65a5af0cbabf1c16251c7c6b2b7cb46d16a7222e79975b9b61fcd66a2e3f28",
+      "size": 1102
+    },
+    "_internal/h2-4.3.0.dist-info/METADATA": {
+      "sha256": "b2f47f8201491420642c229e5fcbcbd5576c7afd023264dcb59b5eb22dcbb265",
+      "size": 5139
+    },
+    "_internal/h2-4.3.0.dist-info/RECORD": {
+      "sha256": "8a82da5c311a938bca0dfa15345c31b68ffd5157c71f2aebaa5aa94b4aee1cf2",
+      "size": 1792
+    },
+    "_internal/h2-4.3.0.dist-info/top_level.txt": {
+      "sha256": "1e2ba5c7c2b12368c550cd5d1bbf8265e4643b78f9d0c07008b1b7e95aeafa42",
+      "size": 3
+    },
+    "_internal/h2-4.3.0.dist-info/WHEEL": {
+      "sha256": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b",
+      "size": 91
     },
     "_internal/libcrypto-3.dll": {
       "sha256": "eaf6d613b95b61a39558d84c50e72630a66c99914292df88e7b54ebd60c5bd34",
@@ -4703,12 +4727,12 @@
       "size": 146208
     },
     "OptizNW.exe": {
-      "sha256": "fc89ad68207b9016ed3638e090d460c0f92f015e4cdaa71bee7f4101ec287cc6",
-      "size": 18346839
+      "sha256": "7fec1c68c87b34f24525ee8a6b546715163b38a70feae9301692239f1051539a",
+      "size": 18343340
     },
     "PingOverlay.exe": {
-      "sha256": "df310afff322174cdd02b1dd09cee9058531bfbc494e58c167dcf1f7e43f6348",
-      "size": 7326897
+      "sha256": "87c12668ce20569a6b20378330f9d41936aa9fb44011fdb07f4ac9e4373e03e7",
+      "size": 7502151
     }
   }
 }
