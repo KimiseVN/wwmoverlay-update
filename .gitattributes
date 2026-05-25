@@ -1,0 +1,2 @@
+# Treat everything as binary — preserve exact bytes so manifest hashes stay valid
+* binary
