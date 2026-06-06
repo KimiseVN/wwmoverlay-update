@@ -1,5 +1,5 @@
 {
-  "version": "1.1.09",
+  "version": "1.1.10",
   "build_type": "setup",
   "files": {
     "_internal/_asyncio.pyd": {
@@ -3847,7 +3847,7 @@
       "size": 726
     },
     "_internal/base_library.zip": {
-      "sha256": "1d28ff55317da0d0702609709ca9d5d1c63cc0036a92b6fea516eb5aadd46e53",
+      "sha256": "a987d4c46e7aebef6681c1cd4acc34bef7549a9cdc9d3885d34bd19709f017b5",
       "size": 1386064
     },
     "_internal/bcrypt/_bcrypt.pyd": {
@@ -4727,12 +4727,12 @@
       "size": 146208
     },
     "OptizNW.exe": {
-      "sha256": "c6043156165a8c9d8f3f940e4f0b1a2b8062d48d5242481e9b3c1aa6a18ce603",
-      "size": 18348281
+      "sha256": "e06acb531f901dadeb2ff410b7cc39ce2630f0f5d1fa917eebd8ad80a25f146b",
+      "size": 18348326
     },
     "PingOverlay.exe": {
-      "sha256": "cb7ebfba58c34af69f90606be0d002a0ef134d22eeb1ded5dbc6700bf8500152",
-      "size": 7563199
+      "sha256": "4eb8f76de6acd9680aefadccd01d758a2d70bcc73445440541399b01d1163029",
+      "size": 7563402
     }
   }
 }
