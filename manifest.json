@@ -1,5 +1,5 @@
 {
-    "version":  "1.1.16",
+    "version":  "1.1.17",
     "build_type":  "setup",
     "files":  {
                   "_internal/_asyncio.pyd":  {
@@ -3835,7 +3835,7 @@
                                                           "size":  726
                                                       },
                   "_internal/base_library.zip":  {
-                                                     "sha256":  "71827db08a1fa7b70f38e3b4bd1a10dd1ba58027d28b83ab8aed6b8d7892803f",
+                                                     "sha256":  "6639d30962dbde02cd457d02a92e1f24dfc8eb84397700f416675974e3db32e1",
                                                      "size":  1386064
                                                  },
                   "_internal/bin/PresentMon.exe":  {
@@ -4519,12 +4519,12 @@
                                               "size":  134144
                                           },
                   "OptizNW.exe":  {
-                                      "sha256":  "d786b25a7ca4e4fc24aa0ec7c733add2cc7c9bd3a12fef293d921ec7aa462240",
-                                      "size":  18462792
+                                      "sha256":  "41e247ab2dea011eeaac171ca3d0f346d0f9eae1e825f63034e3b4eb4fb55a12",
+                                      "size":  18464068
                                   },
                   "PingOverlay.exe":  {
-                                          "sha256":  "e1c00e4b041f27c4f234b86cef6d32ba2d34f84cbb33c54005312fe42c2d3ad4",
-                                          "size":  7003989
+                                          "sha256":  "1d4fb40c2a32c177b5355e6a6ef008ceb79a9b919517e2dcc415b151600c2a84",
+                                          "size":  7005589
                                       }
               }
 }
