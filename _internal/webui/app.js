@@ -169,8 +169,20 @@ function applyInit(d){
 }
 
 /* live polling (child-driven) */
+let _lastPos={x:null,y:null};
+function savePos(){
+  try{
+    if(!api||!api.save_pos) return;
+    const x=window.screenX, y=window.screenY;
+    if(typeof x!=="number"||typeof y!=="number") return;
+    if(x===_lastPos.x && y===_lastPos.y) return;     // unchanged -> skip
+    _lastPos={x,y}; api.save_pos(x,y);
+  }catch(e){}
+}
+
 async function tick(){
   if(!api)return;
+  savePos();
   try{
     const d = await api.tick(currentTab);
     if(!d)return;
@@ -254,7 +266,18 @@ async function saveSettings(){
   try{ applyInit(await api.get_init()); }catch(e){}
 }
 async function openHelp(){ if(!api)return; try{ const d=await api.license_info(); $("helpHwid").textContent=(d&&d.hwid)||"—"; }catch(e){} openModal("helpModal"); }
-async function openLicense(){ if(!api)return; try{ const d=await api.license_info(); $("licSummary").textContent=(d&&d.summary)||""; $("licHwid").textContent=(d&&d.hwid)||"—"; $("licMsg").style.display="none"; }catch(e){} openModal("licenseModal"); }
+async function openLicense(){ if(!api)return;
+  try{
+    const d=await api.license_info();
+    $("licSummary").textContent=(d&&d.summary)||"—";
+    $("licHwid").textContent=(d&&d.hwid)||"—";
+    $("licKeyMasked").textContent=(d&&d.key_masked)||"—";
+    const ico=$("licIco"); if(ico) ico.textContent=(d&&d.licensed)?"✅":"🔑";
+    const kl=$("licKeyLabel"); if(kl) kl.textContent=(st.lang==="vi"?"License của bạn":"Your license");
+    $("licMsg").style.display="none";
+  }catch(e){}
+  openModal("licenseModal");
+}
 async function licenseSave(){ if(!api)return; const k=($("licKey").value||"").trim(); if(!k)return;
   try{ const d=await api.license_save(k); $("licSummary").textContent=(d&&d.summary)||""; $("licMsg").style.display="block"; $("licMsg").textContent=(d&&d.licensed)?"✓ OK":"✗"; }catch(e){}
   try{ applyInit(await api.get_init()); }catch(e){}
@@ -272,7 +295,9 @@ function renderUser(d){
   $("ucLoggedOut").style.display=inn?"none":"block";
   $("ucLoggedIn").style.display=inn?"block":"none";
   $("ucStatus").textContent = inn ? (d.email||"") : (d.summary||"");
-  $("ucPoints").textContent = (d.points==null?"—":d.points);
+  const lbl=$("ucPointsLabel"); if(lbl) lbl.textContent = (st.lang==="vi"?"Điểm giới thiệu":"Referral Points");
+  const pv=(d.points==null?null:Number(d.points));
+  $("ucPoints").textContent = (pv==null||isNaN(pv)) ? "—" : pv.toLocaleString();
 }
 async function refreshUser(){ try{ renderUser(await api.account_info()); }catch(e){} }
 async function openUser(){ if(!api)return; showUcMsg(""); await refreshUser(); openModal("userModal"); }

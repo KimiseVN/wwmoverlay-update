@@ -25,7 +25,7 @@
     <button class="iconbtn" id="licBtn" onclick="openLicense()" title="License">&#128273;</button>
     <button class="iconbtn" id="userBtn" onclick="openUser()" title="Account"><img class="ico" src="icons/account.png" alt=""></button>
     <button class="donatebtn donateCap" id="donBtn" onclick="openDonate()" title="Donate">&#10084; <span data-k="menu_donate">Donate</span></button>
-    <button class="winbtn" onclick="api.minimize()" title="Minimize">&#8211;</button>
+    <button class="winbtn" onclick="savePos();api.minimize()" title="Minimize">&#8211;</button>
     <button class="winbtn close" onclick="openCloseConfirm()" title="Close">&#10005;</button>
   </div>
 
@@ -180,9 +180,14 @@
 <div class="overlay" id="licenseModal" onclick="if(event.target===this)closeModal('licenseModal')">
   <div class="modal">
     <h2 data-k="settings_license_section">License</h2>
-    <p class="msub" id="licSummary"></p>
+    <div class="pointsfield" id="licStatusField">
+      <span class="pf-ico" id="licIco" aria-hidden="true">🔑</span>
+      <span class="pf-label pf-status" id="licSummary">—</span>
+    </div>
     <div class="frow" style="margin-bottom:4px"><span data-k="settings_license_hwid_label">Hardware ID</span></div>
     <div class="hwidbox" id="licHwid">—</div>
+    <div class="frow" style="margin:10px 0 4px"><span id="licKeyLabel">Your license</span></div>
+    <div class="hwidbox" id="licKeyMasked">—</div>
     <div class="frow" style="margin:10px 0 4px"><span data-k="settings_license_enter">Enter license key</span></div>
     <input type="text" id="licKey" class="tinp" style="width:100%;margin-bottom:10px">
     <div id="licMsg" class="lockmsg" style="display:none"></div>
@@ -209,7 +214,11 @@
       </div>
     </div>
     <div id="ucLoggedIn" style="display:none">
-      <div class="frow"><span data-k="uc_points">Points</span><b id="ucPoints">—</b></div>
+      <div class="pointsfield" id="ucPointsField">
+        <span class="pf-ico" aria-hidden="true">★</span>
+        <span class="pf-label" id="ucPointsLabel">Referral Points</span>
+        <b class="pf-val" id="ucPoints">—</b>
+      </div>
       <button class="save" style="margin:10px 0" onclick="accountSync()" data-k="uc_sync_license">Sync license</button>
       <button class="save" style="background:#2a3140!important" onclick="accountLogout()" data-k="uc_logout">Log out</button>
     </div>
@@ -224,8 +233,8 @@
     <h2 id="ccTitle">Close WWM Overlay?</h2>
     <p class="msub" id="ccBody">Hide to the system tray (keep running) or close the app?</p>
     <div style="display:flex;gap:10px">
-      <button class="save" style="background:#2a3140!important;flex:1" id="ccHide" onclick="closeModal('closeConfirm');api.hide()">Hide to tray</button>
-      <button class="save" style="background:linear-gradient(135deg,#ef4444,#ff7070);flex:1" id="ccClose" onclick="api.close_app()">Close</button>
+      <button class="save" style="background:#2a3140!important;flex:1" id="ccHide" onclick="savePos();closeModal('closeConfirm');api.hide()">Hide to tray</button>
+      <button class="save" style="background:linear-gradient(135deg,#ef4444,#ff7070);flex:1" id="ccClose" onclick="savePos();api.close_app()">Close</button>
     </div>
   </div>
 </div>

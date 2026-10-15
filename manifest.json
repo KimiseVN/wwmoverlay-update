@@ -1,14 +1,14 @@
 {
-  "version": "1.1.24",
+  "version": "1.1.25",
   "build_type": "setup",
   "files": {
     "OptizNW.exe": {
-      "sha256": "ea4689737dbbd37f48c06318c6546012fca955f88cef1e71e0d75b2e081885ec",
-      "size": 17718964
+      "sha256": "cae8fdb0a06d92b6d8c59d3106bd457b8636fc46817d31eec53d6251892aa816",
+      "size": 17720411
     },
     "PingOverlay.exe": {
-      "sha256": "b85c6342c3daa6c03e7a678e01af02f97b1a4b00daa7b22f034b1c22f641f835",
-      "size": 9398799
+      "sha256": "385a111c6915215e2f07b411d17ee9c192af4ac9af7c697a51ceebe936657ec6",
+      "size": 9400278
     },
     "_internal/PIL/AvifImagePlugin.py": {
       "sha256": "80733b71d411630ea63c782333de241a12bd83f0f1cafcd8ccde4516bed4b5a1",
@@ -4299,7 +4299,7 @@
       "size": 726
     },
     "_internal/base_library.zip": {
-      "sha256": "3121b6c5527a0dccab19a1ee8a0b54506f5055f492f17004546f2deb904a74d3",
+      "sha256": "bd10d9b887767b5f8b8d2f4718421b055db1e0b7127db61980cc4325f9b971ca",
       "size": 1407392
     },
     "_internal/bin/PresentMon.exe": {
@@ -4911,8 +4911,8 @@
       "size": 712928
     },
     "_internal/webui/app.js": {
-      "sha256": "e32c7ff0d09e05299667236de7c2eb3ae36ba78aa6ed16fa29eef322f3990abc",
-      "size": 19786
+      "sha256": "1314dae5e19098c19da6020fc7a27d4bf15768ad1b52024b7f26b92526d6cd80",
+      "size": 20614
     },
     "_internal/webui/icons/about.png": {
       "sha256": "7ed532121b2a2773dc174a84b8d82ce1df102dee3527d903f6bd7a79386b6910",
@@ -4927,16 +4927,16 @@
       "size": 2583
     },
     "_internal/webui/index.html": {
-      "sha256": "6c8fe2fef05ad964819e67bb3728e3312493fce8cede9e445f2544ba323be135",
-      "size": 14325
+      "sha256": "e0a10744277ca6bd1c02f362d39a7d733bd09f08cd69370036bca22a660c8ec8",
+      "size": 14821
     },
     "_internal/webui/logo.png": {
       "sha256": "81ea150a4663a37903c5636ce6f7359a77b9355536daee2835af56f15bdc4a6c",
       "size": 211048
     },
     "_internal/webui/styles.css": {
-      "sha256": "56e309d9b06b1b1e591d9e2bd21fef59ec4f848c3333f18ba76fadba311878b9",
-      "size": 20838
+      "sha256": "117193d04766b0323163d1edb87332c716d5787d4173715428d924b9ece3ad49",
+      "size": 22373
     },
     "_internal/webview/__init__.py": {
       "sha256": "53a631a579ce342fb45efbe4ef024b28deabb34f061bcf058fd818ce27aa7e80",

@@ -333,3 +333,29 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--blue);cursor:poin
    so drop the glass blur only while the beam runs (brief, during connect). */
 .banner.beam-on{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
 @media (prefers-reduced-motion:reduce){.banner.beam-on .bbeam{animation:none!important;}}
+
+/* ── Referral Points field (icon + value) with always-on neon border beam ──
+   Plain div (no backdrop-filter), so the mask-composite beam renders directly. */
+.pointsfield{position:relative;display:flex;align-items:center;gap:12px;
+  padding:13px 16px;border-radius:13px;margin:4px 0 10px;
+  background:linear-gradient(135deg,rgba(34,211,238,.06),rgba(168,85,247,.06)),#101018;}
+.pointsfield .pf-ico{font-size:19px;line-height:1;color:#ffd36b;
+  filter:drop-shadow(0 0 6px rgba(255,200,80,.65));}
+.pointsfield .pf-label{flex:1;font-size:13px;font-weight:600;color:var(--txt);}
+.pointsfield .pf-val{font-size:20px;font-weight:800;letter-spacing:.3px;
+  color:#eaf6ff;font-variant-numeric:tabular-nums;
+  text-shadow:0 0 10px rgba(120,180,255,.45);}
+.pointsfield::before,.pointsfield::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;z-index:2;
+  background:conic-gradient(from var(--nbang),
+    transparent 0deg,transparent 200deg,
+    rgba(34,211,238,.15) 255deg,#22d3ee 300deg,#3b82f6 330deg,#a855f7 350deg,#ffffff 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  animation:nbSpin 2s linear infinite;}
+.pointsfield::after{filter:blur(7px);}
+@media (prefers-reduced-motion:reduce){.pointsfield::before,.pointsfield::after{animation:none;}}
+
+.pf-status{font-weight:700;font-size:13.5px;line-height:1.3;}
