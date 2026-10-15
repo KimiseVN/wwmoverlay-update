@@ -266,11 +266,22 @@ async function saveSettings(){
   try{ applyInit(await api.get_init()); }catch(e){}
 }
 async function openHelp(){ if(!api)return; try{ const d=await api.license_info(); $("helpHwid").textContent=(d&&d.hwid)||"—"; }catch(e){} openModal("helpModal"); }
+function copyHwid(){
+  const el=$("licHwid"); if(!el||!api) return;
+  const txt=(el.dataset.hwid||el.textContent||"").trim();
+  if(!txt||txt==="—") return;
+  try{ api.copy_text(txt); }catch(e){}
+  el.classList.add("copied");
+  el.textContent=(st.lang==="vi"?"✓ Đã sao chép":"✓ Copied");
+  clearTimeout(window.__hwidT);
+  window.__hwidT=setTimeout(()=>{ el.textContent=txt; el.classList.remove("copied"); }, 1000);
+}
+
 async function openLicense(){ if(!api)return;
   try{
     const d=await api.license_info();
     $("licSummary").textContent=(d&&d.summary)||"—";
-    $("licHwid").textContent=(d&&d.hwid)||"—";
+    const _hw=(d&&d.hwid)||"—"; $("licHwid").textContent=_hw; $("licHwid").dataset.hwid=_hw;
     $("licKeyMasked").textContent=(d&&d.key_masked)||"—";
     const ico=$("licIco"); if(ico) ico.textContent=(d&&d.licensed)?"✅":"🔑";
     const kl=$("licKeyLabel"); if(kl) kl.textContent=(st.lang==="vi"?"License của bạn":"Your license");

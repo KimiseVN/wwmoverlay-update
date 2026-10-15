@@ -185,15 +185,16 @@
       <span class="pf-label pf-status" id="licSummary">—</span>
     </div>
     <div class="frow" style="margin-bottom:4px"><span data-k="settings_license_hwid_label">Hardware ID</span></div>
-    <div class="hwidbox" id="licHwid">—</div>
+    <div class="hwidbox copyable" id="licHwid" onclick="copyHwid()" title="Copy HWID">—</div>
     <div class="frow" style="margin:10px 0 4px"><span id="licKeyLabel">Your license</span></div>
     <div class="hwidbox" id="licKeyMasked">—</div>
     <div class="frow" style="margin:10px 0 4px"><span data-k="settings_license_enter">Enter license key</span></div>
     <input type="text" id="licKey" class="tinp" style="width:100%;margin-bottom:10px">
     <div id="licMsg" class="lockmsg" style="display:none"></div>
     <div style="display:flex;gap:10px">
-      <button class="save" style="background:#2a3140!important;flex:0 0 36%" onclick="licenseClear()" data-k="settings_license_clear">Clear</button>
-      <button class="save" onclick="licenseSave()" data-k="settings_license_save">Save</button>
+      <button class="save" style="background:#2a3140!important;flex:1" onclick="licenseClear()" data-k="settings_license_clear">Clear</button>
+      <button class="save" style="flex:1" onclick="licenseSave()">Save</button>
+      <button class="save" style="background:#2a3140!important;flex:1" onclick="closeModal('licenseModal')" data-k="button_close">Close</button>
     </div>
   </div>
 </div>
@@ -204,10 +205,6 @@
     <h2 data-k="uc_title">Account</h2>
     <div id="ucStatus" class="msub"></div>
     <div id="ucLoggedOut">
-      <div class="frow"><span data-k="uc_email">Email</span><input id="ucEmail" class="tinp" type="email"></div>
-      <div class="frow"><span data-k="uc_password">Password</span><input id="ucPassword" class="tinp" type="password"></div>
-      <button class="save" style="margin:10px 0" onclick="accountLogin()" data-k="uc_login_btn">Log in</button>
-      <div class="ucor" data-k="uc_or">or</div>
       <div style="display:flex;gap:10px">
         <button class="save" style="background:#4285F4" onclick="accountOauth('google')" data-k="uc_login_google">Google</button>
         <button class="save" style="background:#5865f2" onclick="accountOauth('discord')" data-k="uc_login_discord">Discord</button>

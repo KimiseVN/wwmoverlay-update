@@ -359,3 +359,8 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--blue);cursor:poin
 @media (prefers-reduced-motion:reduce){.pointsfield::before,.pointsfield::after{animation:none;}}
 
 .pf-status{font-weight:700;font-size:13.5px;line-height:1.3;}
+
+/* HWID box: click to copy */
+.hwidbox.copyable{cursor:pointer;transition:background .15s,color .15s;}
+.hwidbox.copyable:hover{background:rgba(255,255,255,.07);}
+.hwidbox.copied{color:#34d399;font-weight:700;}
