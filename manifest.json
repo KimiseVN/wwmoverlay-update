@@ -1,13 +1,13 @@
 {
-  "version": "1.1.25",
+  "version": "1.1.26",
   "build_type": "setup",
   "files": {
     "OptizNW.exe": {
-      "sha256": "cae8fdb0a06d92b6d8c59d3106bd457b8636fc46817d31eec53d6251892aa816",
-      "size": 17720411
+      "sha256": "395c9afc9b6bd0c729da4a339cba18a42b91259ab7c747febfd2401492d96e5d",
+      "size": 17720614
     },
     "PingOverlay.exe": {
-      "sha256": "385a111c6915215e2f07b411d17ee9c192af4ac9af7c697a51ceebe936657ec6",
+      "sha256": "55b7e21bca94f0f3d09d4ed9c0bf249fd23e220ce97eca1770c55243addaa1b1",
       "size": 9400278
     },
     "_internal/PIL/AvifImagePlugin.py": {
@@ -4299,7 +4299,7 @@
       "size": 726
     },
     "_internal/base_library.zip": {
-      "sha256": "bd10d9b887767b5f8b8d2f4718421b055db1e0b7127db61980cc4325f9b971ca",
+      "sha256": "5170923c90ac4079b798a3d819aa0d5a4521ec1cbbaaafa031dacaab02f02b09",
       "size": 1407392
     },
     "_internal/bin/PresentMon.exe": {
@@ -4927,8 +4927,8 @@
       "size": 2583
     },
     "_internal/webui/index.html": {
-      "sha256": "e0a10744277ca6bd1c02f362d39a7d733bd09f08cd69370036bca22a660c8ec8",
-      "size": 14821
+      "sha256": "ba7c3ab390e82473b2eb65802d4c10ac3c715bd5b0931a48a0e0e5165c571a7c",
+      "size": 14800
     },
     "_internal/webui/logo.png": {
       "sha256": "81ea150a4663a37903c5636ce6f7359a77b9355536daee2835af56f15bdc4a6c",
