@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ping Overlay</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- Loading screen: ping-pong indeterminate bar, visible until boot() reveals the UI -->
+<div id="loader"><div class="ldr-box"><div class="ldr-text">Loading WWM Overlay</div><div class="ldr-track"><div class="ldr-seg"></div></div></div></div>
+<div class="frame"><div class="app">
+
+  <!-- caption -->
+  <div class="topbar glass shimmer drag pywebview-drag-region">
+    <img class="logo" id="logo" src="logo.png" alt="">
+    <div class="brand">
+      <div class="r1"><h1 id="brandName">Ping Overlay</h1><span class="badge" id="verBadge">v?</span></div>
+      <div class="sub" id="brandSub"></div>
+    </div>
+    <div class="spacer"></div>
+    <button class="langbtn" id="langBtn" onclick="cycleLang()" title="Language"><img id="langFlag" src=""><span id="langCode">VI</span></button>
+    <button class="iconbtn" id="aboutBtn" onclick="openAbout()" title="About"><img class="ico" src="icons/about.png" alt=""></button>
+    <button class="iconbtn" id="setBtn" onclick="openSettings()" title="Settings"><img class="ico" src="icons/settings.png" alt=""></button>
+    <button class="iconbtn" id="licBtn" onclick="openLicense()" title="License">&#128273;</button>
+    <button class="iconbtn" id="userBtn" onclick="openUser()" title="Account"><img class="ico" src="icons/account.png" alt=""></button>
+    <button class="donatebtn donateCap" id="donBtn" onclick="openDonate()" title="Donate">&#10084; <span data-k="menu_donate">Donate</span></button>
+    <button class="winbtn" onclick="api.minimize()" title="Minimize">&#8211;</button>
+    <button class="winbtn close" onclick="openCloseConfirm()" title="Close">&#10005;</button>
+  </div>
+
+  <!-- status banner -->
+  <div class="banner glass" id="banner">
+    <span class="bbeam" aria-hidden="true"></span>
+    <span class="warn" id="bWarn">●</span>
+    <div class="mid">
+      <div class="ttl" id="bTitle">—</div>
+      <div class="sub2" id="bSub"></div>
+    </div>
+    <button class="run" id="runBtn" onclick="startStop()"><span class="run-label" id="runLabel">▶ Start</span><svg class="bolt" aria-hidden="true"><defs><linearGradient id="boltGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset=".35" stop-color="#3b82f6"/><stop offset=".7" stop-color="#a855f7"/><stop offset="1" stop-color="#eaf6ff"/></linearGradient><filter id="boltFilter" x="-40%" y="-40%" width="180%" height="180%"><feTurbulence type="fractalNoise" baseFrequency="0.018 0.05" numOctaves="2" seed="2" result="n"><animate attributeName="baseFrequency" dur="680ms" values="0.018 0.05;0.03 0.075;0.018 0.05" repeatCount="indefinite"/><animate attributeName="seed" dur="1.6s" values="2;12;2" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="6.5" xChannelSelector="R" yChannelSelector="G" result="d"/><feGaussianBlur in="d" stdDeviation="1.1" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="d"/></feMerge></filter></defs><rect class="bolt-core"/><rect class="bolt-spark"/></svg></button>
+  </div>
+
+  <!-- tabs -->
+  <div class="midrow">
+    <div class="tabs glass">
+      <button class="tab active" data-tab="overlay" onclick="showTab('overlay')"><span data-k="gui_overlay_options_frame">Overlay</span></button>
+      <button class="tab" data-tab="tweaks" onclick="showTab('tweaks')"><span data-k="gui_tweaks_frame">Tweaks</span></button>
+      <button class="tab hidden" data-tab="game" id="gameTab" onclick="showTab('game')"><span data-k="gui_game_ping_frame">Game</span></button>
+    </div>
+  </div>
+
+  <!-- body -->
+  <div class="body">
+    <div class="pane show" id="pane-overlay">
+      <div class="section glass">
+        <h3 data-k="gui_overlay_options_frame">Overlay options</h3>
+        <div class="optgrid" id="optgrid"></div>
+      </div>
+    </div>
+    <div class="pane" id="pane-tweaks">
+      <div class="section glass">
+        <h3 data-k="gui_tweaks_frame">Tweaks</h3>
+        <div id="tweakLock" class="lockmsg" style="display:none">🔒 <span data-k="gui_license_locked_note">License required</span></div>
+        <div id="tweakList"></div>
+      </div>
+    </div>
+    <div class="pane" id="pane-game">
+      <div class="section glass">
+        <div id="gameLock" class="lockmsg" style="display:none">🔒 <span data-k="gui_license_locked_note">License required</span></div>
+        <div class="optrow" id="gameOpts"></div>
+      </div>
+      <div class="section glass" id="gamePingSec">
+        <h3 data-k="gui_game_ping_frame">Ping</h3>
+        <div class="mgrid" id="mPing"></div>
+      </div>
+      <div class="section glass" id="gameConnSec">
+        <h3 data-k="gui_game_data_frame">Connection</h3>
+        <div class="mgrid" id="mConn"></div>
+      </div>
+      <div class="section glass" id="gameSrvSec">
+        <h3 data-k="gui_game_servers_frame">Servers</h3>
+        <div id="mServers" class="srvlist"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <div class="footer">
+    <div class="copyright">© <span id="year"></span> ★ムKim · <a onclick="api.discord()" data-k="gui_join_discord">Discord</a></div>
+    <div class="trial" id="trialLabel"></div>
+  </div>
+
+</div></div>
+
+<!-- About modal -->
+<div class="overlay" id="aboutModal" onclick="if(event.target===this)closeModal('aboutModal')">
+  <div class="modal">
+    <h2 id="aboutTitle">WWM Overlay</h2>
+    <p class="msub" id="aboutBody" style="white-space:pre-line"></p>
+    <div style="display:flex;gap:10px;margin-bottom:10px">
+      <button class="save" style="background:#5865f2" onclick="api.discord()" data-k="gui_join_discord">Discord</button>
+      <button class="save" style="background:linear-gradient(135deg,#ff3b6b,#ff784f)" onclick="closeModal('aboutModal');openDonate()" data-k="menu_donate">Donate</button>
+    </div>
+    <button class="save" style="background:#2a3140!important" onclick="closeModal('aboutModal')" data-k="button_close">Close</button>
+  </div>
+</div>
+
+<!-- Donate modal (AutoCode style) -->
+<div class="overlay" id="donateModal" onclick="if(event.target===this)closeModal('donateModal')">
+  <div class="modal donate-modal">
+    <div class="dhead">
+      <div class="dhead-ico">❤</div>
+      <div style="flex:1;min-width:0"><h2 id="dTitle">Support the Developer</h2>
+        <div class="msub" id="dSub" style="margin:0">More motivation to build for the community</div></div>
+      <button class="dclose" onclick="closeModal('donateModal')">✕</button>
+    </div>
+    <div class="dbody">
+      <div class="dleft">
+        <div class="ddev"><span id="dDevLabel">Dev</span>: <b id="donateDev"></b>
+          <button class="discordbtn" onclick="api.discord()">🎮 <span data-k="gui_join_discord">Discord</span></button>
+        </div>
+        <div class="dsupport" id="dVia">Support via PayPal:</div>
+        <button class="kofibtn" onclick="donateKofi()">☕ <span id="dKofi">Buy me a coffee</span></button>
+      </div>
+      <div class="dright">
+        <img id="donateQr" src="" style="cursor:zoom-in" onclick="openQrZoom()">
+        <div class="qrlabel" id="dScan">Scan QR</div>
+        <div id="dEnlarge" style="font-size:11px;color:var(--faint)">Click to enlarge</div>
+      </div>
+    </div>
+    <div class="dthanks"><b id="dThanksT">✨ Thank You</b>
+      <div id="dThanksS"></div></div>
+    <button class="save donate-close-btn" id="dClose" onclick="closeModal('donateModal')">Close</button>
+  </div>
+</div>
+
+<div id="qrZoom" onclick="closeQrZoom()" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(2,3,8,.92);align-items:center;justify-content:center;cursor:zoom-out;padding:24px">
+  <img id="qrZoomImg" src="" alt="QR" style="max-width:min(92vw,92vh);max-height:92vh;border-radius:14px;background:#fff;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.6)">
+</div>
+
+<!-- Settings modal -->
+<div class="overlay" id="settingsModal" onclick="if(event.target===this)closeModal('settingsModal')">
+  <div class="modal" style="width:480px">
+    <h2 data-k="settings_dialog_title">Settings</h2>
+    <p class="msub" data-k="settings_dialog_intro"></p>
+    <h3 class="msec" data-k="settings_hotkeys_section">Hotkeys</h3>
+    <div id="setHotkeys"></div>
+    <h3 class="msec" data-k="settings_overlay_section">Overlay</h3>
+    <div class="frow"><span data-k="settings_overlay_scale_label">Scale</span>
+      <input type="range" id="setScale" min="70" max="180" step="5" oninput="document.getElementById('setScaleV').textContent=this.value+'%'">
+      <b id="setScaleV">100%</b></div>
+    <label class="frow"><span data-k="settings_overlay_transparent">Transparent background</span>
+      <input type="checkbox" id="setTransparent"></label>
+    <div class="frow"><span data-k="settings_rotate_label">Rotate interval (s)</span>
+      <input type="number" id="setRotate" min="2" max="120" class="ninp"></div>
+    <h3 class="msec" data-k="settings_general_section">General</h3>
+    <label class="frow" id="setAutoRow"><span data-k="settings_start_with_windows">Start with Windows</span>
+      <input type="checkbox" id="setAutostart"></label>
+    <div class="frow"><span data-k="settings_guild_current">Guild ID</span>
+      <input type="text" id="setGuild" class="tinp"></div>
+    <div id="setErr" class="lockmsg" style="display:none"></div>
+    <div style="display:flex;gap:10px;margin-top:14px">
+      <button class="save" style="background:#2a3140!important;flex:0 0 36%" onclick="closeModal('settingsModal')" data-k="settings_cancel">Cancel</button>
+      <button class="save" onclick="saveSettings()" data-k="settings_save">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Help modal -->
+<div class="overlay" id="helpModal" onclick="if(event.target===this)closeModal('helpModal')">
+  <div class="modal">
+    <h2 data-k="help_hwid_title">Your Hardware ID</h2>
+    <p class="msub" data-k="help_hwid_body"></p>
+    <div class="hwidbox" id="helpHwid">—</div>
+    <button class="save" onclick="closeModal('helpModal')" data-k="button_close">Close</button>
+  </div>
+</div>
+
+<!-- License modal -->
+<div class="overlay" id="licenseModal" onclick="if(event.target===this)closeModal('licenseModal')">
+  <div class="modal">
+    <h2 data-k="settings_license_section">License</h2>
+    <p class="msub" id="licSummary"></p>
+    <div class="frow" style="margin-bottom:4px"><span data-k="settings_license_hwid_label">Hardware ID</span></div>
+    <div class="hwidbox" id="licHwid">—</div>
+    <div class="frow" style="margin:10px 0 4px"><span data-k="settings_license_enter">Enter license key</span></div>
+    <input type="text" id="licKey" class="tinp" style="width:100%;margin-bottom:10px">
+    <div id="licMsg" class="lockmsg" style="display:none"></div>
+    <div style="display:flex;gap:10px">
+      <button class="save" style="background:#2a3140!important;flex:0 0 36%" onclick="licenseClear()" data-k="settings_license_clear">Clear</button>
+      <button class="save" onclick="licenseSave()" data-k="settings_license_save">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- User Center modal -->
+<div class="overlay" id="userModal" onclick="if(event.target===this)closeModal('userModal')">
+  <div class="modal">
+    <h2 data-k="uc_title">Account</h2>
+    <div id="ucStatus" class="msub"></div>
+    <div id="ucLoggedOut">
+      <div class="frow"><span data-k="uc_email">Email</span><input id="ucEmail" class="tinp" type="email"></div>
+      <div class="frow"><span data-k="uc_password">Password</span><input id="ucPassword" class="tinp" type="password"></div>
+      <button class="save" style="margin:10px 0" onclick="accountLogin()" data-k="uc_login_btn">Log in</button>
+      <div class="ucor" data-k="uc_or">or</div>
+      <div style="display:flex;gap:10px">
+        <button class="save" style="background:#4285F4" onclick="accountOauth('google')" data-k="uc_login_google">Google</button>
+        <button class="save" style="background:#5865f2" onclick="accountOauth('discord')" data-k="uc_login_discord">Discord</button>
+      </div>
+    </div>
+    <div id="ucLoggedIn" style="display:none">
+      <div class="frow"><span data-k="uc_points">Points</span><b id="ucPoints">—</b></div>
+      <button class="save" style="margin:10px 0" onclick="accountSync()" data-k="uc_sync_license">Sync license</button>
+      <button class="save" style="background:#2a3140!important" onclick="accountLogout()" data-k="uc_logout">Log out</button>
+    </div>
+    <div id="ucMsg" class="lockmsg" style="display:none;margin-top:10px"></div>
+    <button class="save" style="background:#2a3140!important;margin-top:12px" onclick="closeModal('userModal')" data-k="button_close">Close</button>
+  </div>
+</div>
+
+<!-- Close confirm -->
+<div class="overlay" id="closeConfirm" onclick="if(event.target===this)closeModal('closeConfirm')">
+  <div class="modal" style="width:410px">
+    <h2 id="ccTitle">Close WWM Overlay?</h2>
+    <p class="msub" id="ccBody">Hide to the system tray (keep running) or close the app?</p>
+    <div style="display:flex;gap:10px">
+      <button class="save" style="background:#2a3140!important;flex:1" id="ccHide" onclick="closeModal('closeConfirm');api.hide()">Hide to tray</button>
+      <button class="save" style="background:linear-gradient(135deg,#ef4444,#ff7070);flex:1" id="ccClose" onclick="api.close_app()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- Restart required -->
+<div class="overlay" id="restartModal" onclick="if(event.target===this)closeModal('restartModal')">
+  <div class="modal" style="width:420px">
+    <h2 id="rsTitle">Restart required</h2>
+    <p class="msub" id="rsBody">This tweak needs a Windows restart to take effect.</p>
+    <div style="display:flex;gap:10px">
+      <button class="save" style="background:#2a3140!important;flex:1" id="rsLater" onclick="closeModal('restartModal')">Restart later</button>
+      <button class="save" style="flex:1" id="rsNow" onclick="api.restart_windows()">Restart now</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
