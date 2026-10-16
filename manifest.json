@@ -1,14 +1,14 @@
 {
-  "version": "1.1.29",
+  "version": "1.1.30",
   "build_type": "setup",
   "files": {
     "OptizNW.exe": {
-      "sha256": "41a40cc6aa54afa9072ce58e4feec41c81fe3b3ebbfb444bb890ef5dc3ecb9c4",
-      "size": 17718989
+      "sha256": "9fb666dbe45f52d428dcdb4127603c11fbd1072b76d8b31798af6d5fb9d47a52",
+      "size": 17719408
     },
     "PingOverlay.exe": {
-      "sha256": "4e9cec9a2f85e8c9abc63c3d2bafa6b069730f3c427e9827a1dfd97b1584f9c1",
-      "size": 9401066
+      "sha256": "7a29a69113d963fc03189094495a33e2377f56627b50be43e3e43778c2054c44",
+      "size": 9409891
     },
     "_internal/PIL/AvifImagePlugin.py": {
       "sha256": "80733b71d411630ea63c782333de241a12bd83f0f1cafcd8ccde4516bed4b5a1",
@@ -4299,7 +4299,7 @@
       "size": 726
     },
     "_internal/base_library.zip": {
-      "sha256": "acd0fe35b49332c5c6bc9303d6c2b23e73efcee1d4467454dd87f0b0d4e29d6c",
+      "sha256": "afa84141f58fa40256cc2d3f69254241d5ce821d8dcbb2de37dfb496a39ddaa3",
       "size": 1407392
     },
     "_internal/bin/PresentMon.exe": {
@@ -5197,6 +5197,10 @@
     "_internal/zlib1.dll": {
       "sha256": "1dd27f0411ebb31bd148a61589cee254410915f1e6c37aa3ffa52fac71a5426c",
       "size": 146208
+    },
+    "uninstall.exe": {
+      "sha256": "02ff6091143728ff4cd1ff664eb48268184537f3eb35595348044be41977c114",
+      "size": 12948249
     }
   }
 }
