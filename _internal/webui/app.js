@@ -14,10 +14,7 @@ function applyStatic(){
     const v = st.strings[e.dataset.k];
     if (v != null) e.textContent = v;
   });
-  $("langCode").textContent = (st.lang || "vi").toUpperCase();
-  const f = st.flags[st.lang];
-  $("langFlag").style.display = f ? "block" : "none";
-  if (f) $("langFlag").src = f;
+  renderLangSwitch();
 }
 
 /* ── overlay options ── */
@@ -143,19 +140,34 @@ function showTab(name){
 function openModal(id){ $(id).classList.add("show"); }
 function closeModal(id){ $(id).classList.remove("show"); }
 
-async function cycleLang(){
-  if(!api)return;
-  const i = st.langs.indexOf(st.lang);
-  const next = st.langs[(i+1)%st.langs.length];
-  try{ const d=await api.set_lang(next); if(d){ st.lang=d.lang||next; if(d.strings)st.strings=d.strings; } }catch(e){ st.lang=next; }
+const LANG_NAMES={vi:"Tiếng Việt", en:"English", ru:"Русский"};
+function flagBtn(l){
+  return '<button class="flagbtn'+(l===st.lang?' sel':'')+'" onclick="setLang(\''+l+'\')" aria-label="'+(LANG_NAMES[l]||l)+'" title="'+(LANG_NAMES[l]||l)+'"><img src="lg-'+l+'.svg" alt=""></button>';
+}
+function renderLangSwitch(){
+  const sw=$("langSw"); if(sw) sw.innerHTML=(st.langs||["vi","en"]).map(flagBtn).join("");
+}
+async function setLang(l){
+  if(!l) return;
+  closeModal("langPick");
+  if(api){ try{ const d=await api.set_lang(l); if(d){ st.lang=d.lang||l; if(d.strings)st.strings=d.strings; } }catch(e){ st.lang=l; } }
+  else st.lang=l;
+  st.lang_chosen=true;
+  $("brandSub").textContent=(st.lang==="vi"?"Overlay cho Where Winds Meet":"Overlay for Where Winds Meet");
   applyStatic(); renderOptions(); renderTweaks(); renderGameOpts();
+}
+function showLangPick(){
+  const row=$("langPickRow");
+  if(row) row.innerHTML=(st.langs||["vi","en"]).map(l=>'<div class="langpick-item">'+flagBtn(l)+'<span class="lbl">'+(LANG_NAMES[l]||l)+'</span></div>').join("");
+  $("langQ").textContent = "What language do you use?";   // first-run dialog is always English
+  $("langPick").classList.add("show");
 }
 
 function applyInit(d){
   if(!d)return;
   st.options=d.options||{}; st.order=d.order||Object.keys(st.options); st.free=d.free||[];
   st.strings=d.strings||{}; st.lang=d.lang||"vi"; st.licensed=!!d.licensed; st.flags=d.flags||{};
-  st.langs=d.langs||["vi","en"]; st.tweaks=d.tweaks||[]; st.game_options=d.game_options||{};
+  st.langs=d.langs||["vi","en"]; st.lang_chosen=!!d.lang_chosen; st.tweaks=d.tweaks||[]; st.game_options=d.game_options||{};
   st.game_available=!!d.game_available; st.donate=d.donate||null;
   if(d.version)$("verBadge").textContent="⚡ v"+d.version;
   if(d.brand)$("brandName").textContent=d.brand;
@@ -166,6 +178,7 @@ function applyInit(d){
   setMonitoring(d.monitoring);
   if(d.status)setStatus(d.status.title,d.status.sub);
   if(d.trial)$("trialLabel").textContent=d.trial;
+  if(!d.lang_chosen) showLangPick();   // first run after install
 }
 
 /* live polling (child-driven) */

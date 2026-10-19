@@ -364,3 +364,20 @@ input[type=checkbox]{width:18px;height:18px;accent-color:var(--blue);cursor:poin
 .hwidbox.copyable{cursor:pointer;transition:background .15s,color .15s;}
 .hwidbox.copyable:hover{background:rgba(255,255,255,.07);}
 .hwidbox.copied{color:#34d399;font-weight:700;}
+
+
+/* ── Glossy 3D flag language buttons (dome/gloss baked into lg-*.svg) ── */
+.langsw{display:flex;align-items:center;gap:7px;-webkit-app-region:no-drag;}
+.flagbtn{--d:24px;width:var(--d);height:var(--d);flex:none;border:none;padding:0;cursor:pointer;background:transparent;border-radius:50%;position:relative;outline:none;opacity:.6;transition:transform .2s cubic-bezier(.34,1.56,.64,1),opacity .2s ease,filter .2s ease;}
+.flagbtn img{width:100%;height:100%;display:block;border-radius:50%;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.45));}
+.flagbtn:hover{transform:translateY(-2px) scale(1.07);opacity:1;}
+.flagbtn:hover img{filter:drop-shadow(0 4px 7px rgba(0,0,0,.5)) brightness(1.08);}
+.flagbtn:active{transform:scale(.95);}
+.flagbtn.sel{opacity:1;}
+.flagbtn.sel::after{content:"";position:absolute;inset:-3px;border-radius:50%;pointer-events:none;box-shadow:0 0 0 2px rgba(91,155,255,.95),0 0 9px 1px rgba(91,155,255,.5);}
+.flagbtn:focus-visible{outline:2px solid #5b9bff;outline-offset:3px;}
+.langpick-row{display:flex;justify-content:center;gap:28px;margin-top:22px;}
+.langpick-item{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.langpick-item .flagbtn{--d:48px;opacity:.92;}
+.langpick-item .lbl{font-size:12px;font-weight:700;color:#9096a8;}
+@media (prefers-reduced-motion:reduce){.flagbtn{transition:none;}}

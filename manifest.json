@@ -1,10 +1,10 @@
 {
-  "version": "1.1.32",
+  "version": "1.1.33",
   "build_type": "setup",
   "files": {
     "PingOverlay.exe": {
-      "sha256": "f2dc0a611969d79f3479e5bc3342775b354727855a421da6d641216ff86d7e59",
-      "size": 9414488
+      "sha256": "0ea26ba37425e49bdd0616a3d2aae5506b70213fc2f78ec54be7878385928ebe",
+      "size": 9414660
     },
     "_internal/PIL/AvifImagePlugin.py": {
       "sha256": "80733b71d411630ea63c782333de241a12bd83f0f1cafcd8ccde4516bed4b5a1",
@@ -4295,7 +4295,7 @@
       "size": 726
     },
     "_internal/base_library.zip": {
-      "sha256": "2aa43b09067fe6fa6d714faa8588700f02b724bfb231ebf27c250196a5afc422",
+      "sha256": "55b53fbc845d484b8fa4842e1650fe807e4e7e1f827bfff939e2ffd91940ee22",
       "size": 1407392
     },
     "_internal/bin/PresentMon.exe": {
@@ -4907,8 +4907,8 @@
       "size": 712928
     },
     "_internal/webui/app.js": {
-      "sha256": "9c9fc82be5288ea9bbbe5839482d8864998927568bcdb8b6c16a7616957ca115",
-      "size": 21097
+      "sha256": "de67b63f36898d59a68b441773eea5ef2a24e790880180bbc2035d31e84838c4",
+      "size": 21500
     },
     "_internal/webui/icons/about.png": {
       "sha256": "7ed532121b2a2773dc174a84b8d82ce1df102dee3527d903f6bd7a79386b6910",
@@ -4923,16 +4923,28 @@
       "size": 2583
     },
     "_internal/webui/index.html": {
-      "sha256": "2a3bedf1d580624fcd458c9822f1c57ba798eafb6f7abfe395ad6a5f7a857b27",
-      "size": 14710
+      "sha256": "6f96b5e0811dccadc56645aff23046539b79f94c0f4d4afc4c0eb8614b1c4987",
+      "size": 14678
+    },
+    "_internal/webui/lg-en.svg": {
+      "sha256": "663d2bc7e0a417c833876baa3e5aa363b4cbef8a3749a66cb3050c2da061ef15",
+      "size": 2477
+    },
+    "_internal/webui/lg-ru.svg": {
+      "sha256": "bf0ccfca6b780e4b9e651e11ff1fdf24505bcf0bc9173dd92e0365adadd8247e",
+      "size": 1829
+    },
+    "_internal/webui/lg-vi.svg": {
+      "sha256": "cc86b763458b33360db9339512ee87ad3235612391f72ce8180b0cd2268dd237",
+      "size": 1879
     },
     "_internal/webui/logo.png": {
       "sha256": "81ea150a4663a37903c5636ce6f7359a77b9355536daee2835af56f15bdc4a6c",
       "size": 211048
     },
     "_internal/webui/styles.css": {
-      "sha256": "09d3a0e180b7287ec8a77ee36408c6412194c33a30b4d48b6d3ade652f1137a0",
-      "size": 22584
+      "sha256": "8fe8bf814af091cac540b59e50f73bee813a38bbe621786adecc2c68315c92db",
+      "size": 23612
     },
     "_internal/webview/__init__.py": {
       "sha256": "53a631a579ce342fb45efbe4ef024b28deabb34f061bcf058fd818ce27aa7e80",
@@ -5195,8 +5207,8 @@
       "size": 146208
     },
     "manifest.json": {
-      "sha256": "0bd6330e22bca4da20797546d61380d5ead779229813498e7f58fb73a4bc3c04",
-      "size": 210969
+      "sha256": "6549553aa25ba616d1960d1ae3db55b89da05ed72eac2e2cbcca0176589e8646",
+      "size": 211416
     },
     "uninstall.exe": {
       "sha256": "02ff6091143728ff4cd1ff664eb48268184537f3eb35595348044be41977c114",
